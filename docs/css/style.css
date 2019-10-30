@@ -1,0 +1,67 @@
+h4 {
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+  color: grey;
+  font-size: 11px;
+}
+
+body {
+  background-color: #eee;
+}
+
+.container {
+  width: 600px;
+  background-color: white;
+  margin: 0 auto;
+}
+
+header,
+section {
+  position: fixed;
+  text-align: center;
+  background-color: white;
+  width: 600px;
+}
+
+section {
+  top: 50px;
+}
+
+.logo {
+  width: 120px;
+  padding: 10px;
+}
+
+main {
+  padding: 370px 10px 20px;
+}
+
+article {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 7px;
+  border: 2px solid white;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+article:hover {
+  border: 2px solid red;
+}
+
+.thumb {
+  height: 100px;
+  border-radius: 4px;
+}
+
+.details {
+  padding: 10px 20px;
+}
