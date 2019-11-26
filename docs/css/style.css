@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 h4 {
   padding: 0;
   margin: 0;
@@ -64,4 +68,77 @@ article:hover {
 
 .details {
   padding: 10px 20px;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  28% {
+    transform: translateY(-6px);
+  }
+  44% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes jumpbig {
+  0% {
+    transform: translateY(0px);
+  }
+  28% {
+    transform: translateY(-12px);
+  }
+  44% {
+    transform: translateY(0px);
+  }
+}
+
+.wrapper-loading {
+  display: none;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.loading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 12px;
+}
+
+.loading-title {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+}
+
+.loading > div {
+  background-color: white;
+  animation: jump 1s infinite ease-in-out;
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+  margin-left: 4px;
+}
+
+.loading > div:nth-child(1) {
+  animation-delay: 200ms;
+  margin-left: 0;
+}
+
+.loading > div:nth-child(2) {
+  animation-delay: 300ms;
+}
+
+.loading > div:nth-child(3) {
+  animation-delay: 400ms;
 }

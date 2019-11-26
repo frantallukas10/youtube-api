@@ -4,6 +4,7 @@ window.onload = function() {
   const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
   const maxResults = 50;
   const part = 'snippet';
+  let nextPageToken = '';
 
   function loadVideos() {
     axios
@@ -11,11 +12,34 @@ window.onload = function() {
         `${URL}?part=${part}&maxResults=${maxResults}&playlistId=${playlistId}&key=${key}`
       )
       .then(res => {
+        nextPageToken = res.data.nextPageToken;
         const id = res.data.items[0].snippet.resourceId.videoId;
 
         mainVideo(id);
         resultsLoop(res.data);
       });
+
+    window.onscroll = function() {
+      if (
+        window.innerHeight + window.pageYOffset >=
+        document.body.offsetHeight + 16
+      ) {
+        nextPageToken !== undefined &&
+          new Promise(resolve => {
+            document.getElementById('loader').style.display = 'flex';
+            resolve(
+              axios.get(
+                `${URL}?part=${part}&maxResults=${maxResults}&playlistId=${playlistId}&key=${key}&pageToken=${nextPageToken}`
+              )
+            );
+          }).then(res => {
+            console.log(res);
+
+            nextPageToken = res.data.nextPageToken;
+            resultsLoop(res.data);
+          });
+      }
+    };
   }
 
   function resultsLoop(data) {
@@ -42,6 +66,7 @@ window.onload = function() {
         mainVideo(id);
       });
     });
+    document.getElementById('loader').style.display = 'none';
   }
 
   function mainVideo(id) {
